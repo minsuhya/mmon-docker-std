@@ -1,0 +1,144 @@
+version: "3.7"
+services:
+  # Laravel SCM
+  scm:
+    build:
+      args:
+        user: "${USER}"
+        uid: 1000
+      context: ./php-fpm
+      dockerfile: Dockerfile
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    ports:
+      - 9000:9000
+    volumes:
+      - ./src/:/var/www
+      - ./config/php-fpm/:/usr/local/etc
+    # command: "composer install --working-dir=/var/www/scm"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "scm.rupi-local.co.kr:host-gateway"
+      - "seller.rupi-local.co.kr:host-gateway"
+    networks:
+      - frontend
+      - backend
+
+  # Laravel API
+  api:
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    ports:
+      - 9001:9000
+    volumes:
+      - ./src/:/var/www
+    # command: "composer install --working-dir=/var/www/api"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "api.rupi-local.co.kr:host-gateway"
+    depends_on:
+      - scm
+    networks:
+      - frontend
+      - backend
+
+  # Laravel Backend
+  backend:
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    ports:
+      - 9002:9000
+    volumes:
+      - ./src/:/var/www
+    # command: "composer install --working-dir=/var/www/backend"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "backend.rupi-local.co.kr:host-gateway"
+    depends_on:
+      - scm
+    networks:
+      - frontend
+      - backend
+
+  # Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./src/:/var/www
+      - ./config/nginx/conf.d:/etc/nginx/conf.d/
+    networks:
+      - frontend
+      - backend
+
+  # Mysql Service
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    env_file: ./config/mysql/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - '-pMmon0706#'
+      retries: 3
+      timeout: 5s
+    networks:
+      - frontend
+      - backend
+
+  # Redis
+  redis:
+    image: redis:alpine
+    ports:
+      - '${FORWARD_REDIS_PORT:-6379}:6379'
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    # 컨테이너 종료시 재시작 여부 설정
+    restart: unless-stopped
+    # restart: always
+    # volumes:
+      # - ./redis/data:/data
+      # - ./redis/conf/redis.conf:/usr/local/conf/redis.conf
+    # command: redis-server /usr/local/conf/redis.conf
+    command: redis-server --port 6379
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      retries: 3
+      timeout: 5s
+    networks:
+      - frontend
+      - backend
+
+  # PHP-Worker
+  php-worker:
+    build:
+      context: ./php-worker
+    volumes:
+      - ./src/:/var/www
+      - ./php-worker/supervisord.d:/etc/supervisord.d
+    depends_on:
+      - scm
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
