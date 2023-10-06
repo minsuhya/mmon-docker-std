@@ -1,0 +1,383 @@
+-- MySQL dump 10.13  Distrib 8.1.0, for Linux (x86_64)
+--
+-- Host: localhost    Database: mts
+-- ------------------------------------------------------
+-- Server version	8.1.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `mts`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `mts` /*!40100 DEFAULT CHARACTER SET euckr */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `mts`;
+
+--
+-- Table structure for table `MTS_ATALK_MSG`
+--
+
+DROP TABLE IF EXISTS `MTS_ATALK_MSG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_ATALK_MSG` (
+  `TRAN_PR` bigint NOT NULL AUTO_INCREMENT,
+  `TRAN_REFKEY` varchar(20) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ID` varchar(20) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_SENDER_KEY` varchar(40) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_TMPL_CD` varchar(30) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_BUTTON` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_PHONE` varchar(15) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_MSG` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL,
+  `TRAN_STATUS` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` varchar(5) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_REPLACE_MSG` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_SUBJECT` varchar(100) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_CALLBACK` varchar(15) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_REPLACE_TYPE` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT 'N',
+  `TRAN_ETC1` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_LOG` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  `TRAN_TITLE` varchar(500) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_NATION_PHONE` varchar(5) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT '82',
+  `TRAN_SUPPLEMENT` varchar(4000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_PRICE` bigint DEFAULT NULL,
+  `TRAN_CURRENCY` varchar(3) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_HEADER` varchar(32) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ATTACHMENT` varchar(4000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_APPUSERID` varchar(50) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  PRIMARY KEY (`TRAN_PR`)
+) ENGINE=InnoDB AUTO_INCREMENT=3480 DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_ATALK_MSG`
+--
+
+LOCK TABLES `MTS_ATALK_MSG` WRITE;
+/*!40000 ALTER TABLE `MTS_ATALK_MSG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_ATALK_MSG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_ATALK_MSG_LOG`
+--
+
+DROP TABLE IF EXISTS `MTS_ATALK_MSG_LOG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_ATALK_MSG_LOG` (
+  `TRAN_PR` bigint DEFAULT NULL,
+  `TRAN_REFKEY` varchar(20) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ID` varchar(20) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_SENDER_KEY` varchar(40) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_TMPL_CD` varchar(30) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_BUTTON` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_PHONE` varchar(15) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_MSG` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL,
+  `TRAN_STATUS` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` varchar(5) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_REPLACE_MSG` varchar(2000) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_SUBJECT` varchar(100) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_CALLBACK` varchar(15) CHARACTER SET euckr COLLATE euckr_korean_ci NOT NULL,
+  `TRAN_REPLACE_TYPE` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC1` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_LOG` char(1) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  `TRAN_TITLE` varchar(500) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_NATION_PHONE` varchar(5) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_SUPPLEMENT` varchar(4000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_PRICE` bigint DEFAULT NULL,
+  `TRAN_CURRENCY` varchar(3) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_HEADER` varchar(32) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_ATTACHMENT` varchar(4000) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  `TRAN_APPUSERID` varchar(50) CHARACTER SET euckr COLLATE euckr_korean_ci DEFAULT NULL,
+  KEY `idx1_MTS_ATALK_MSG_LOG` (`TRAN_PR`),
+  KEY `idx2_MTS_ATALK_MSG_LOG` (`TRAN_PHONE`),
+  KEY `idx3_MTS_ATALK_MSG_LOG` (`TRAN_DATE`),
+  KEY `idx4_MTS_ATALK_MSG_LOG` (`TRAN_STATUS`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_ATALK_MSG_LOG`
+--
+
+LOCK TABLES `MTS_ATALK_MSG_LOG` WRITE;
+/*!40000 ALTER TABLE `MTS_ATALK_MSG_LOG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_ATALK_MSG_LOG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_MMS_CONTENTS`
+--
+
+DROP TABLE IF EXISTS `MTS_MMS_CONTENTS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_MMS_CONTENTS` (
+  `TRAN_PR` bigint NOT NULL,
+  `CONTENT_SEQ` int NOT NULL,
+  `CONTENT_TYPE` varchar(3) NOT NULL,
+  `CONTENT_NAME` varchar(255) NOT NULL,
+  `CONTENT_SVC` varchar(3) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N',
+  PRIMARY KEY (`TRAN_PR`,`CONTENT_SEQ`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_MMS_CONTENTS`
+--
+
+LOCK TABLES `MTS_MMS_CONTENTS` WRITE;
+/*!40000 ALTER TABLE `MTS_MMS_CONTENTS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_MMS_CONTENTS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_MMS_CONTENTS_LOG`
+--
+
+DROP TABLE IF EXISTS `MTS_MMS_CONTENTS_LOG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_MMS_CONTENTS_LOG` (
+  `TRAN_PR` bigint NOT NULL,
+  `CONTENT_SEQ` int NOT NULL,
+  `CONTENT_TYPE` varchar(3) NOT NULL,
+  `CONTENT_NAME` varchar(255) NOT NULL,
+  `CONTENT_SVC` varchar(3) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_MMS_CONTENTS_LOG`
+--
+
+LOCK TABLES `MTS_MMS_CONTENTS_LOG` WRITE;
+/*!40000 ALTER TABLE `MTS_MMS_CONTENTS_LOG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_MMS_CONTENTS_LOG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_MMS_MSG`
+--
+
+DROP TABLE IF EXISTS `MTS_MMS_MSG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_MMS_MSG` (
+  `TRAN_PR` bigint NOT NULL AUTO_INCREMENT,
+  `TRAN_REFKEY` varchar(20) DEFAULT NULL,
+  `TRAN_ID` varchar(20) DEFAULT NULL,
+  `TRAN_CALLBACK` varchar(15) NOT NULL,
+  `TRAN_PHONE` varchar(15) NOT NULL,
+  `TRAN_SUBJECT` varchar(100) DEFAULT NULL,
+  `TRAN_MSG` varchar(2000) NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL DEFAULT '4',
+  `TRAN_STATUS` char(1) NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` varchar(5) DEFAULT NULL,
+  `TRAN_ETC1` varchar(160) DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  PRIMARY KEY (`TRAN_PR`),
+  KEY `idx1_MTS_MMS_MSG` (`TRAN_PHONE`),
+  KEY `idx2_MTS_MMS_MSG` (`TRAN_DATE`),
+  KEY `idx3_MTS_MMS_MSG` (`TRAN_STATUS`),
+  KEY `idx4_MTS_MMS_MSG` (`TRAN_REFKEY`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_MMS_MSG`
+--
+
+LOCK TABLES `MTS_MMS_MSG` WRITE;
+/*!40000 ALTER TABLE `MTS_MMS_MSG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_MMS_MSG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_MMS_MSG_LOG`
+--
+
+DROP TABLE IF EXISTS `MTS_MMS_MSG_LOG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_MMS_MSG_LOG` (
+  `TRAN_PR` bigint NOT NULL,
+  `TRAN_REFKEY` varchar(20) DEFAULT NULL,
+  `TRAN_ID` varchar(20) DEFAULT NULL,
+  `TRAN_CALLBACK` varchar(15) NOT NULL,
+  `TRAN_PHONE` varchar(15) NOT NULL,
+  `TRAN_SUBJECT` varchar(100) DEFAULT NULL,
+  `TRAN_MSG` varchar(2000) NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL DEFAULT '4',
+  `TRAN_STATUS` char(1) NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` varchar(5) DEFAULT NULL,
+  `TRAN_ETC1` varchar(160) DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  KEY `idx1_MTS_MMS_MSG_LOG` (`TRAN_PR`),
+  KEY `idx2_MTS_MMS_MSG_LOG` (`TRAN_PHONE`),
+  KEY `idx3_MTS_MMS_MSG_LOG` (`TRAN_DATE`),
+  KEY `idx4_MTS_MMS_MSG_LOG` (`TRAN_STATUS`),
+  KEY `idx5_MTS_MMS_MSG_LOG` (`TRAN_REFKEY`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_MMS_MSG_LOG`
+--
+
+LOCK TABLES `MTS_MMS_MSG_LOG` WRITE;
+/*!40000 ALTER TABLE `MTS_MMS_MSG_LOG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_MMS_MSG_LOG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_SMS_MSG`
+--
+
+DROP TABLE IF EXISTS `MTS_SMS_MSG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_SMS_MSG` (
+  `TRAN_PR` bigint NOT NULL AUTO_INCREMENT,
+  `TRAN_REFKEY` varchar(20) DEFAULT NULL,
+  `TRAN_ID` varchar(20) DEFAULT NULL,
+  `TRAN_PHONE` varchar(15) NOT NULL,
+  `TRAN_CALLBACK` varchar(15) NOT NULL,
+  `TRAN_MSG` varchar(150) NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL DEFAULT '0',
+  `TRAN_STATUS` char(1) NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` char(2) DEFAULT NULL,
+  `TRAN_ETC1` varchar(160) DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  PRIMARY KEY (`TRAN_PR`),
+  KEY `MTS_SMS_MSG_IDX1` (`TRAN_PHONE`),
+  KEY `MTS_SMS_MSG_IDX2` (`TRAN_DATE`),
+  KEY `MTS_SMS_MSG_IDX3` (`TRAN_STATUS`),
+  KEY `MTS_SMS_MSG_IDX4` (`TRAN_REFKEY`)
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_SMS_MSG`
+--
+
+LOCK TABLES `MTS_SMS_MSG` WRITE;
+/*!40000 ALTER TABLE `MTS_SMS_MSG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_SMS_MSG` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MTS_SMS_MSG_LOG`
+--
+
+DROP TABLE IF EXISTS `MTS_SMS_MSG_LOG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `MTS_SMS_MSG_LOG` (
+  `TRAN_PR` bigint NOT NULL,
+  `TRAN_REFKEY` varchar(20) DEFAULT NULL,
+  `TRAN_ID` varchar(20) DEFAULT NULL,
+  `TRAN_PHONE` varchar(15) NOT NULL,
+  `TRAN_CALLBACK` varchar(15) NOT NULL,
+  `TRAN_MSG` varchar(150) NOT NULL,
+  `TRAN_DATE` datetime NOT NULL,
+  `TRAN_TYPE` int NOT NULL DEFAULT '0',
+  `TRAN_STATUS` char(1) NOT NULL DEFAULT '1',
+  `TRAN_SENDDATE` datetime DEFAULT NULL,
+  `TRAN_REPORTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLTDATE` datetime DEFAULT NULL,
+  `TRAN_RSLT` char(2) DEFAULT NULL,
+  `TRAN_ETC1` varchar(160) DEFAULT NULL,
+  `TRAN_ETC2` varchar(160) DEFAULT NULL,
+  `TRAN_ETC3` varchar(160) DEFAULT NULL,
+  `TRAN_ETC4` varchar(160) DEFAULT NULL,
+  `TRAN_END_TELCO` varchar(8) DEFAULT NULL,
+  `TRAN_LOG` char(1) DEFAULT 'N',
+  `TRAN_GRPSEQ` int DEFAULT NULL,
+  KEY `MTS_SMS_MSG_LOG_IDX1` (`TRAN_PR`),
+  KEY `MTS_SMS_MSG_LOG_IDX2` (`TRAN_PHONE`),
+  KEY `MTS_SMS_MSG_LOG_IDX3` (`TRAN_DATE`),
+  KEY `MTS_SMS_MSG_LOG_IDX4` (`TRAN_STATUS`),
+  KEY `MTS_SMS_MSG_LOG_IDX5` (`TRAN_REFKEY`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MTS_SMS_MSG_LOG`
+--
+
+LOCK TABLES `MTS_SMS_MSG_LOG` WRITE;
+/*!40000 ALTER TABLE `MTS_SMS_MSG_LOG` DISABLE KEYS */;
+/*!40000 ALTER TABLE `MTS_SMS_MSG_LOG` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-10-06  9:00:02

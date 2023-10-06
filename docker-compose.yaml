@@ -15,7 +15,7 @@ services:
       - 9000:9000
     volumes:
       - ./src/:/var/www
-      - ./config/php-fpm/:/usr/local/etc
+      # - ./config/php-fpm/:/usr/local/etc
     # command: "composer install --working-dir=/var/www/scm"
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -80,9 +80,13 @@ services:
   db:
     image: mysql:8
     restart: unless-stopped
-    env_file: ./config/mysql/.env
+    ports:
+      - 33306:3306
+    env_file: ./config/mysql/mysql.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - ./initdb.d:/docker-entrypoint-initdb.d:rw
     healthcheck:
       test:
         - CMD
