@@ -1,20 +1,36 @@
 #!/bin/sh
 
-# docker install
-# docker-compose install
-# git clone git@github.com:m-monstar/mmon-docker-std.git mmon-solution
-# git clone git@github.com:m-monstar/mmon-v2-scm.git mmon-solution/src/scm
-# git clone git@github.com:m-monstar/mmon-v2-backend.git mmon-solution/src/backend
-# git clone git@github.com:m-monstar/mmon-v2-partnershop-api.git mmon-solution/src/api
-# cd mmon-solution/src/scm
-# git submodule update --init
-# cd ../api
-# git submodule update --init
-# cd ../backend
-# git submodule update --init
-# cd ../../
-# docker compose build
-# docker compose up
-# docker compose up -d
-# docker compose stop
-# docker compose start
+# Init
+PROJECT="src"
+
+API_URL="https://github.com/m-monstar/mmon-v2-partnershop-api.git"
+BACKEND_URL="https://github.com/m-monstar/mmon-v2-backend.git"
+SCM_URL="https://github.com/m-monstar/mmon-v2-scm.git"
+
+API_DIR="api"
+BACKEND_DIR="backend"
+SCM_DIR="scm"
+
+# Directory
+if [ ! -d $PROJECT ] ; then
+	mkdir $PROJECT
+fi
+
+# Git Clone
+if [ ! -d $PROJECT/$API_DIR ]; then
+	git clone $API_URL $PROJECT/$API_DIR
+fi
+if [ ! -d $PROJECT/$BACKEND_DIR ]; then
+	git clone $BACKEND_URL $PROJECT/$BACKEND_DIR
+fi
+if [ ! -d $PROJECT/$SCM_DIR ]; then
+	git clone $SCM_URL $PROJECT/$SCM_DIR
+fi
+
+# Git Submodule Update
+cd $PROJECT/$API_DIR && git submodule update --init
+cd ..
+cd $BACKEND_DIR && git submodule update --init
+cd ..
+cd $SCM_DIR && git submodule update --init
+
