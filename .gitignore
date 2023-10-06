@@ -5,6 +5,7 @@
 /storage/*.pem
 /vendor
 /src
+/initdb.d.sample
 .env
 .env*
 .phpunit.result.cache
