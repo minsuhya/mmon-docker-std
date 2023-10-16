@@ -1,7 +1,7 @@
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  server_name scm.rupi.co.kr seller.rupi.co.kr;
+  server_name $MMON_SCM_URL $MMON_SELLER_URL;
 
   index index.php index.html;
 
@@ -11,24 +11,24 @@ server {
   root /var/www/scm/public;
 
   location ~ \.php$ {
-      try_files  =404;
+      try_files $uri =404;
       fastcgi_split_path_info ^(.+\.php)(/.+)$;
       fastcgi_pass scm:9000;
       fastcgi_index index.php;
       include fastcgi_params;
-      fastcgi_param SCRIPT_FILENAME ;
-      fastcgi_param PATH_INFO ;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_param PATH_INFO $fastcgi_path_info;
   }
 
   location / {
-      try_files  / /index.php?;
+      try_files $uri $uri/ /index.php?$query_string;
       gzip_static on;
   }
 }
 
 server {
   listen 80;
-  server_name api.rupi.co.kr;
+  server_name $MMON_API_URL;
 
   index index.php index.html;
 
@@ -38,24 +38,24 @@ server {
   root /var/www/api/public;
 
   location ~ \.php$ {
-      try_files  =404;
+      try_files $uri =404;
       fastcgi_split_path_info ^(.+\.php)(/.+)$;
       fastcgi_pass api:9000;
       fastcgi_index index.php;
       include fastcgi_params;
-      fastcgi_param SCRIPT_FILENAME ;
-      fastcgi_param PATH_INFO ;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_param PATH_INFO $fastcgi_path_info;
   }
 
   location / {
-      try_files  / /index.php?;
+      try_files $uri $uri/ /index.php?$query_string;
       gzip_static on;
   }
 }
 
 server {
   listen 80;
-  server_name backend.rupi.co.kr;
+  server_name $MMON_BACKEND_URL;
 
   index index.php index.html;
 
@@ -65,17 +65,17 @@ server {
   root /var/www/backend/public;
 
   location ~ \.php$ {
-      try_files  =404;
+      try_files $uri =404;
       fastcgi_split_path_info ^(.+\.php)(/.+)$;
       fastcgi_pass backend:9000;
       fastcgi_index index.php;
       include fastcgi_params;
-      fastcgi_param SCRIPT_FILENAME ;
-      fastcgi_param PATH_INFO ;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      fastcgi_param PATH_INFO $fastcgi_path_info;
   }
 
   location / {
-      try_files  / /index.php?;
+      try_files $uri $uri/ /index.php?$query_string;
       gzip_static on;
   }
 }

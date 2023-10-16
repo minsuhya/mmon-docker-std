@@ -12,7 +12,7 @@ docker compose build
 # Docker compose up
 docker compose up -d
 
-# Compose install In Docker Container
+# PHP Composer install In Docker Container
 if [ $(docker container ls -a -q --filter "name=^$PROJECT_DIR-$SCM_DIR") ]: then
     docker exec -w /var/www/$SCM_DIR -it $(docker container ls -a -q --filter "name=^$PROJECT_DIR-$SCM_DIR") sh -c "composer install"
 fi

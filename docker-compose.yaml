@@ -19,8 +19,8 @@ services:
     # command: "composer install --working-dir=/var/www/scm"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-      - "scm.rupi-local.co.kr:host-gateway"
-      - "seller.rupi-local.co.kr:host-gateway"
+      - "${MMON_SCM_URL}:host-gateway"
+      - "${MMON_SELLER_URL}:host-gateway"
     networks:
       - frontend
       - backend
@@ -37,7 +37,7 @@ services:
     # command: "composer install --working-dir=/var/www/api"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-      - "api.rupi-local.co.kr:host-gateway"
+      - "${MMON_API_URL}:host-gateway"
     depends_on:
       - scm
     networks:
@@ -56,7 +56,7 @@ services:
     # command: "composer install --working-dir=/var/www/backend"
     extra_hosts:
       - "host.docker.internal:host-gateway"
-      - "backend.rupi-local.co.kr:host-gateway"
+      - "${MMON_BACKEND_URL}:host-gateway"
     depends_on:
       - scm
     networks:
