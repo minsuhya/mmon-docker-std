@@ -22,6 +22,7 @@ yarn-error.log
 /.history
 /.scribe
 /resources/views/scribe/index.blade.php
+/nginx/conf.d/laravel.conf
 
 ### PHPSTAN 로컬설정용
 phpstan.neon
