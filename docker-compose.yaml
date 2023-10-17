@@ -8,7 +8,7 @@ services:
         uid: 1000
       context: ./php-fpm
       dockerfile: Dockerfile
-    image: laravel-app
+    image: mmon-lara-app
     restart: unless-stopped
     working_dir: /var/www/
     ports:
@@ -27,7 +27,7 @@ services:
 
   # Laravel API
   api:
-    image: laravel-app
+    image: mmon-lara-app
     restart: unless-stopped
     working_dir: /var/www/
     ports:
@@ -46,7 +46,7 @@ services:
 
   # Laravel Backend
   backend:
-    image: laravel-app
+    image: mmon-lara-app
     restart: unless-stopped
     working_dir: /var/www/
     ports:
@@ -130,6 +130,7 @@ services:
   php-worker:
     build:
       context: ./php-worker
+    image: mmon-worker
     volumes:
       - ./src/:/var/www
       - ./php-worker/supervisord.d:/etc/supervisord.d
