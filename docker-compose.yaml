@@ -131,7 +131,6 @@ services:
     image: mmon-lara-worker
     build:
       context: ./php-worker
-    image: mmon-worker
     volumes:
       - ./src/:/var/www
       - ./php-worker/supervisord.d:/etc/supervisord.d
