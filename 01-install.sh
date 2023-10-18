@@ -28,14 +28,14 @@ if [ ! -d $WORK_DIR/$SCM_DIR ]; then
 fi
 
 # Git Submodule Update
-if [ ! -d $WORK_DIR/$API_DIR ]; then
+if [ -d $WORK_DIR/$API_DIR ]; then
     cd $WORK_DIR/$API_DIR && git submodule update --init
     cd ../..
 fi
-if [ ! -d $WORK_DIR/$BACKEND_DIR ]; then
+if [ -d $WORK_DIR/$BACKEND_DIR ]; then
     cd $WORK_DIR/$BACKEND_DIR && git submodule update --init
     cd ../..
 fi
-if [ ! -d $WORK_DIR/$SCM_DIR ]; then
+if [ -d $WORK_DIR/$SCM_DIR ]; then
     cd $WORK_DIR/$SCM_DIR && git submodule update --init
 fi
