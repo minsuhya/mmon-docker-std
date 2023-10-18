@@ -459,13 +459,13 @@ server {
 
 # 5. Mmon Git Repository Clone & install 
 
-- install.sh 실행
+- 01-install.sh 실행
   - 각 서비스 GIt Clone 및 Submodule Update
   - docker-compose .env를 통한 docker-compose.yml 및 nginx/conf.d/laravel.conf 도메인 문자열 대체 처리
 
   ```bash
   $ cd ~/mmon-solution
-  $ sh install.sh
+  $ sh 01-install.sh
   ```
 
 # 6. Env 환경설정 파일 적재 (로컬개발환경 - 개발자 PC 환경)
@@ -484,12 +484,12 @@ server {
     - 각 개발환경에 맞는 url, key 등 설정값 조정
 
 # 7. Mmon 솔루션 Docker Compose Build & Up & PHP Composer install
-compose-init.sh 실행 =>  docker compose build && docker compose up -d(데몬) && php Composer install 완료
+02-compose-init.sh 실행 =>  docker compose build && docker compose up -d(데몬) && php Composer install 완료
 
 - docker 서비스 실행
   ```
   $ cd ~/mmon-solution
-  $ sh compose-init.sh
+  $ sh 02-compose-init.sh
   ```
 - docker 서비스 확인 및 리스트
   ```
@@ -504,6 +504,15 @@ compose-init.sh 실행 =>  docker compose build && docker compose up -d(데몬) 
   mmon-docker-std-redis-1        redis:alpine                 "docker-entrypoint.s…"   redis               9 seconds ago       Up 8 seconds (health: starting)   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp
   mmon-docker-std-scm-1          laravel-app                  "docker-php-entrypoi…"   scm                 9 seconds ago       Up 7 seconds                      0.0.0.0:9000->9000/tcp, :::9000->9000/tcp
   ```
+
+# 7-1. [운영에서만] Mmon 솔루션 Database Migration
+03-migrate-remote-db.sh 실행 => DB host 서버에 접속하여, 기초 Database Table Migration & 솔루션 Migration 
+
+- docker 서비스 실행
+```
+$ cd ~/mmon-solution
+$ sh 03-migrate-remote-db.sh
+```
 
 # 8. 로컬 브라우저 확인 및 개발 디버깅
 
